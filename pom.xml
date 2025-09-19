@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<modelVersion>4.0.0</modelVersion>
+
+<!-- 父依赖：Spring Boot 2.7.x 最新稳定版 -->
+<parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.7.18</version>
+    <relativePath/> <!-- lookup parent from repository -->
+</parent>
+
+<groupId>com.pr</groupId>
+<artifactId>Picking_reports</artifactId>
+<version>1.0-SNAPSHOT</version>
+<!--<name>springboot-demo</name>-->
+<description>采报小程序基础框架</description>
+
+<!-- 属性配置 -->
+<properties>
+    <java.version>1.8</java.version>
+    <!-- MySQL 版本适配5.7.44 -->
+    <mysql.version>5.1.49</mysql.version>
+    <!-- MyBatis 版本 -->
+    <mybatis-plus.version>3.5.3.1</mybatis-plus.version>
+    <!-- Redis 客户端版本（适配Redis 5.0.14.1） -->
+    <redis.version>2.7.18</redis.version>
+    <lettuce.version>6.1.10.RELEASE</lettuce.version>
+    <!-- Swagger 版本 -->
+    <swagger.version>3.0.0</swagger.version>
+    <!-- 日志框架版本 -->
+    <logback.version>1.2.11</logback.version>
+    <!-- Lombok 版本 -->
+    <lombok.version>1.18.24</lombok.version>
+</properties>
+
+<dependencies>
+    <!-- Spring Boot 核心启动器 -->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter</artifactId>
+    </dependency>
+
+    <!-- Web 启动器（包含Spring MVC） -->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    <!-- 数据库相关 -->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-jdbc</artifactId>
+    </dependency>
+
+    <!-- MySQL 驱动（适配5.7.x版本） -->
+    <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+        <version>${mysql.version}</version>
+        <scope>runtime</scope>
+    </dependency>
+
+    <!-- MyBatis 集成 Spring Boot -->
+    <dependency>
+        <groupId>com.baomidou</groupId>
+        <artifactId>mybatis-plus-boot-starter</artifactId>
+        <version>${mybatis-plus.version}</version>
+    </dependency>
+    <!-- 3. MyBatis Spring Boot Starter（适配 2.7.x，依赖 MyBatis 3.5.3+） -->
+    <dependency>
+        <groupId>org.mybatis.spring.boot</groupId>
+        <artifactId>mybatis-spring-boot-starter</artifactId>
+        <version>2.3.2</version> <!-- 与 Spring Boot 2.7.18 兼容 -->
+    </dependency>
+
+    <!-- Redis 集成（适配5.0.14.1版本） -->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-data-redis</artifactId>
+        <version>${redis.version}</version>
+        <exclusions>
+            <!-- 排除默认的lettuce版本，使用指定版本 -->
+            <exclusion>
+                <groupId>io.lettuce</groupId>
+                <artifactId>lettuce-core</artifactId>
+            </exclusion>
+        </exclusions>
+    </dependency>
+    <!-- 显式指定与Redis 5.0.14.1兼容的lettuce客户端版本 -->
+    <dependency>
+        <groupId>io.lettuce</groupId>
+        <artifactId>lettuce-core</artifactId>
+        <version>${lettuce.version}</version>
+    </dependency>
+
+    <!-- 连接池 -->
+    <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>druid-spring-boot-starter</artifactId>
+        <version>1.2.18</version>
+    </dependency>
+    <!-- SpringDoc 核心依赖（包含 OpenAPI 3.0 和 Swagger UI） -->
+    <dependency>
+        <groupId>org.springdoc</groupId>
+        <artifactId>springdoc-openapi-ui</artifactId>
+        <version>1.6.15</version> <!-- 与 Spring Boot 2.7.x 完美兼容的稳定版本 -->
+    </dependency>
+    <!-- 日志框架 -->
+    <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-classic</artifactId>
+        <version>${logback.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>net.logstash.logback</groupId>
+        <artifactId>logstash-logback-encoder</artifactId>
+        <version>7.0.1</version>
+    </dependency>
+
+    <!-- AOP 切面编程（用于日志记录） -->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-aop</artifactId>
+    </dependency>
+
+    <!-- Lombok 简化代码 -->
+    <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>${lombok.version}</version>
+        <optional>true</optional>
+    </dependency>
+
+    <!-- 数据校验 -->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-validation</artifactId>
+    </dependency>
+
+    <!-- 工具类 -->
+    <dependency>
+        <groupId>cn.hutool</groupId>
+        <artifactId>hutool-all</artifactId>
+        <version>5.8.22</version>
+    </dependency>
+
+    <!-- Redis 工具类扩展 -->
+<!--    <dependency>-->
+<!--        <groupId>org.redisson</groupId>-->
+<!--        <artifactId>redisson-spring-boot-starter</artifactId>-->
+<!--        <version>3.17.7</version>-->
+<!--    </dependency>-->
+    <!--fastJson工具-->
+    <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>fastjson</artifactId>
+        <version>2.0.25</version>
+    </dependency>
+    <!-- 测试依赖 -->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-test</artifactId>
+        <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>com.baomidou</groupId>
+        <artifactId>mybatis-plus-boot-starter-test</artifactId>
+        <version>${mybatis-plus.version}</version>
+        <scope>test</scope>
+    </dependency>
+    <!-- Spring Boot Starter Data JPA -->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-data-jpa</artifactId>
+        <version>2.7.18</version>
+    </dependency>
+
+</dependencies>
+
+<build>
+    <plugins>
+        <!-- Spring Boot 打包插件 -->
+        <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+            <version>2.6.13</version>
+            <configuration>
+                <!-- 启动类全路径 -->
+                <mainClass>com.cb.PickingReportsMain</mainClass>
+                <!-- 打包时排除test -->
+                <excludes>
+                    <exclude>
+                        <groupId>org.projectlombok</groupId>
+                        <artifactId>lombok</artifactId>
+                    </exclude>
+                </excludes>
+            </configuration>
+            <executions>
+                <execution>
+                    <id>repackage</id>
+                    <goals>
+                        <goal>repackage</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+
+        <!-- 编译插件 -->
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.8.1</version>
+            <configuration>
+                <source>${java.version}</source>
+                <target>${java.version}</target>
+                <encoding>UTF-8</encoding>
+            </configuration>
+        </plugin>
+
+        <!-- 资源文件处理 -->
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-resources-plugin</artifactId>
+            <version>3.2.0</version>
+            <configuration>
+                <encoding>UTF-8</encoding>
+            </configuration>
+        </plugin>
+    </plugins>
+
+    <!-- 资源文件路径配置 -->
+    <resources>
+        <resource>
+            <directory>src/main/java</directory>
+            <includes>
+                <include>**/*.xml</include>
+            </includes>
+        </resource>
+        <resource>
+            <directory>src/main/resources</directory>
+            <includes>
+                <include>**/*.*</include>
+            </includes>
+        </resource>
+    </resources>
+</build>
+</project>
