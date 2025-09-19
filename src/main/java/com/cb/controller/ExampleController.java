@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("TEST")
-@Tag(name="示例模块",description = "接口文档示例")//此处为模块名以及对应描述
+@Tag(name="示例模块",description = "接口文档示例")//此处为接口文档模块名以及对应描述
 public class ExampleController {
     @Operation(summary = "无参测试接口", description = "返回固定的字符串")//接口名称和接口描述
     @RequestMapping(value = "/test",method = RequestMethod.GET)

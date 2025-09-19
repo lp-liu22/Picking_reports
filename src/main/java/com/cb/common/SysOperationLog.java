@@ -28,7 +28,7 @@ public @interface SysOperationLog {
      *
      * @return 是否记录请求参数
      */
-    boolean params() default true;
+    boolean paramsFlag() default true;
 
     /**
      * 是否记录响应结果
@@ -36,5 +36,5 @@ public @interface SysOperationLog {
      * 响应结果默认不记录，避免日志过大
      * @return 是否记录响应结果
      */
-    boolean result() default false;
+    boolean resultFlag() default false;
 }

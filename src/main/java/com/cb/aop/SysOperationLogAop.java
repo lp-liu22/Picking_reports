@@ -35,7 +35,7 @@ public class SysOperationLogAop {
      * 拦截带@SysOperatinLog注解的方法
      */
     @Pointcut("@annotation(com.cb.common.SysOperationLog)")
-    public void logPointCut(){};
+    public void logPointCut(){}
     /**
      * 环绕通知
      */
@@ -92,8 +92,9 @@ public class SysOperationLogAop {
         //获取调用方法
         String methodName= signature.getName();
         log.setExecuteMethod(className+"."+methodName);
-        //请求参数允许记录则将请求参数转序列化为json(部分参数需要隐藏，不方便直接序列化，但现在先不处理)
-        if(sysOperationLog.params()){
+        //请求参数允许记录则将请求参数转序列化为json
+        boolean recordParamsFlag =  sysOperationLog.paramsFlag();
+        if(recordParamsFlag){
             Object[] args = joinPoint.getArgs();
             try {
                 log.setRequestParams(objectMapper.writeValueAsString(args));
@@ -102,8 +103,7 @@ public class SysOperationLogAop {
             }
         }
         //记录响应结果,若结果允许记录标志为真则记录
-        assert sysOperationLog != null;
-        boolean recordResultFlag = sysOperationLog.result();
+        boolean recordResultFlag = sysOperationLog.resultFlag();
         if( recordResultFlag && result != null){
             try{
                 log.setResponseResult(objectMapper.writeValueAsString(result));
