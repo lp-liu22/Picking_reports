@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
-<!-- 命名空间对应Mapper接口全类名 -->
 <mapper namespace="com.cb.mapper.SysOperationLogMapper">
-
     <!-- 插入日志 -->
     <insert id="insert" parameterType="com.cb.entity.dataBaseEntity.OperationLogEntity" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO sys_operation_log (
@@ -34,16 +31,9 @@
                      #{requestParams},
                      #{responseResult},
                      #{executeTime},
-                     NOW(), -- 或使用实体类中的operationTime（JPA自动填充）
+                     NOW(),
                      #{status},
                      #{exceptionMsg}
                  )
     </insert>
-
-    <!-- 可添加其他SQL -->
-    <!--
-    <select id="selectById" resultType="com.example.demo.entity.SysOperationLog">
-        SELECT * FROM sys_operation_log WHERE id = #{id}
-    </select>
-    -->
 </mapper>

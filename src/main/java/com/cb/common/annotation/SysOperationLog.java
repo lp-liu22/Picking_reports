@@ -1,4 +1,4 @@
-package com.cb.common;
+package com.cb.common.annotation;
 
 import java.lang.annotation.*;
 

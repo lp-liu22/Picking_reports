@@ -1,6 +1,6 @@
 package com.cb.aop;
 
-import com.cb.common.SysOperationLog;
+import com.cb.common.annotation.SysOperationLog;
 import com.cb.entity.dataBaseEntity.OperationLogEntity;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -34,7 +34,7 @@ public class SysOperationLogAop {
     /**
      * 拦截带@SysOperatinLog注解的方法
      */
-    @Pointcut("@annotation(com.cb.common.SysOperationLog)")
+    @Pointcut("@annotation(com.cb.common.annotation.SysOperationLog)")
     public void logPointCut(){}
     /**
      * 环绕通知

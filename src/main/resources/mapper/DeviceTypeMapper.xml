@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cb.mapper.DeviceTypeMapper">
+
+    <insert id="insertNewDeviceType" parameterType="com.cb.entity.dataBaseEntity.DeviceTypeEntity">
+        INSERT INTO device_type(ID, DEVICE_CREATE_USER, DEVICE_DESCRIPTION, DEVICE_STATUS, DEVICE_TYPE_NAME,  PARENT_ID, TYPE_CREATE_TIME, TYPE_UPDATE_TIME)
+        VALUES (#{id},#{deviceCreateUser},#{deviceDescription},#{deviceStatus},#{deviceTypeName},#{parentId},NOW(),NOW())
+    </insert>
+</mapper>
