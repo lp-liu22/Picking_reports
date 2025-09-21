@@ -1,5 +1,6 @@
 package com.cb.entity.dataBaseEntity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -22,9 +23,9 @@ public class DeviceTypeEntity {
     private String deviceDescription;//设备类型描述
     @Column(length = 1,columnDefinition = "CHAR(1)")
     private char deviceStatus;//设备类型使用状态：0未启用，1启用，2删除
-//    @CreationTimestamp
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date typeCreateTime;//设备类型创建时间
-//    @UpdateTimestamp//该注解用于自动更新时间，
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date typeUpdateTime;//设备类型创建时间
     @Column(length = 50)
     private String deviceCreateUser;//设备类型创建人

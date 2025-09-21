@@ -39,13 +39,27 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
         List<DeviceTypeEntity> data =  deviceTypeMapper.searchTypeByCondition(pageQuery);
         List<DeviceQueryParam>  deviceQueryParams= new ArrayList<>();
         //将查询的数据按照parent_id分组
-        Map<Long,List<DeviceTypeEntity>> childrenByParentId = data.stream().filter(item-> item.getParentId()!=null&&item.getParentId() != 0).collect(Collectors.groupingBy(DeviceTypeEntity::getParentId));
-        //
-        deviceQueryParams = data.stream().
-                filter(item->item.getParentId() == null || item.getParentId()==0) //先筛选出所有父类
-                .map(item->DeviceQueryParam.init(item,childrenByParentId.get(item.getId())!=null?childrenByParentId.get(item.getId()): Collections.emptyList()))//组合
-                .collect(Collectors.toList());
-        ;
+        if(data != null) {
+            Map<Long, List<DeviceTypeEntity>> childrenByParentId = data.stream().filter(item -> item.getParentId() != null && item.getParentId() != 0).collect(Collectors.groupingBy(DeviceTypeEntity::getParentId));
+            //
+            deviceQueryParams = data.stream().
+                    filter(item -> item.getParentId() == null || item.getParentId() == 0) //先筛选出所有父类
+                    .map(item -> DeviceQueryParam.init(item, childrenByParentId.get(item.getId()) != null ? childrenByParentId.get(item.getId()) : Collections.emptyList()))//组合
+                    .collect(Collectors.toList());
+            for (int i = 0; i < deviceQueryParams.size(); i++) {
+                //去除子类为空并且父类不满足查询条件的
+                if((pageQuery.getQueryParam().getDeviceTypeName() !=null && !pageQuery.getQueryParam().getDeviceTypeName().equals("") && deviceQueryParams.get(i).getDeviceTypeName().contains(pageQuery.getQueryParam().getDeviceTypeName()) ) ||
+                         pageQuery.getQueryParam().getDeviceCreateUser() !=null && !pageQuery.getQueryParam().getDeviceCreateUser().equals("")&&(deviceQueryParams.get(i).getDeviceCreateUser().contains(pageQuery.getQueryParam().getDeviceCreateUser()))
+                ){
+                    continue;
+                }
+                if(deviceQueryParams.get(i).getChildren().size() == 0
+                ){
+                    deviceQueryParams.remove(i);
+                    i-=1;
+                }
+            }
+        }
         Integer total = deviceTypeMapper.searchTypeByConditionCount(pageQuery);
         return PageResult.handleSearchData(deviceQueryParams,total, pageQuery.getPageNum(), pageQuery.getValidPageSize());
     }

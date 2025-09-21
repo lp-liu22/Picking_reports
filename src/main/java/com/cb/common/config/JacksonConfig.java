@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class JacksonConfig {
 
-    // 显式注册ObjectMapper Bean，与Spring Boot自动配置功能一致
+    // 显式注册ObjectMapper Bean
     @Bean
     public ObjectMapper objectMapper() {
         return new ObjectMapper();
