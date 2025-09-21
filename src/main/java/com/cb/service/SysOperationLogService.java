@@ -15,4 +15,5 @@ public class SysOperationLogService {
     public void saveOperationLog(OperationLogEntity operationLogEntity){
         sysOperationLogMapper.insert(operationLogEntity);
     }
+
 }

@@ -1,4 +1,4 @@
-package com.cb.common.resultEntity;
+package com.cb.common.commonEntity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -7,4 +7,52 @@
         INSERT INTO device_type(ID, DEVICE_CREATE_USER, DEVICE_DESCRIPTION, DEVICE_STATUS, DEVICE_TYPE_NAME,  PARENT_ID, TYPE_CREATE_TIME, TYPE_UPDATE_TIME)
         VALUES (#{id},#{deviceCreateUser},#{deviceDescription},#{deviceStatus},#{deviceTypeName},#{parentId},NOW(),NOW())
     </insert>
+    <select id="searchTypeByCondition" resultType="com.cb.entity.dataBaseEntity.DeviceTypeEntity">
+        SELECT ID, DEVICE_CREATE_USER, DEVICE_DESCRIPTION, DEVICE_STATUS, DEVICE_TYPE_NAME, PARENT_ID, TYPE_CREATE_TIME, TYPE_UPDATE_TIME
+        FROM device_type
+        WHERE device_status!= '2'
+        <if test="queryParam.deviceCreateUser !=null and queryParam.deviceCreateUser.trim() !='' ">
+            AND device_create_user LIKE CONCAT('%',#{queryParam.deviceCreateUser},'%') ESCAPE '#'
+        </if>
+        <if test="queryParam.deviceTypeName !=null and queryParam.deviceTypeName.trim() !='' ">
+            AND device_type_name LIKE CONCAT('%',#{queryParam.deviceTypeName},'%') ESCAPE '#'
+        </if>
+        <if test="queryParam.deviceStatus !=null and queryParam.deviceStatus !='' ">
+            AND device_type_name = #{queryParam.deviceStatus}
+        </if>
+        <if test="queryParam.beginTime !=null and queryParam.beginTime.trim() !='' ">
+            AND type_create_time >= #{queryParam.beginTime}
+        </if>
+        <if test="queryParam.endTime !=null and queryParam.endTime.trim() !='' ">
+            AND type_create_time &lt;= #{queryParam.endTime}
+        </if>
+        <if test="queryParam.parentId !=null and queryParam.parentId !='' ">
+            AND parent_id = #{queryParam.parentId}
+        </if>
+        ORDER BY id,type_create_time desc
+        LIMIT #{offset},#{validPageSize}
+    </select>
+    <select id="searchTypeByConditionCount" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM device_type
+        WHERE device_status!= '2'
+        <if test="queryParam.deviceCreateUser !=null and queryParam.deviceCreateUser.trim() !='' ">
+            AND device_create_user LIKE CONCAT('%',#{queryParam.deviceCreateUser},'%') ESCAPE '#'
+        </if>
+        <if test="queryParam.deviceTypeName !=null and queryParam.deviceTypeName.trim() !='' ">
+            AND device_type_name LIKE CONCAT('%',#{queryParam.deviceTypeName},'%') ESCAPE '#'
+        </if>
+        <if test="queryParam.deviceStatus !=null and queryParam.deviceStatus !='' ">
+            AND device_type_name = #{queryParam.deviceStatus}
+        </if>
+        <if test="queryParam.beginTime !=null and queryParam.beginTime.trim() !='' ">
+            AND type_create_time >= #{queryParam.beginTime}
+        </if>
+        <if test="queryParam.endTime !=null and queryParam.endTime.trim() !='' ">
+            AND type_create_time &lt;= #{queryParam.endTime}
+        </if>
+        <if test="queryParam.parentId !=null and queryParam.parentId !='' ">
+            AND parent_id = #{queryParam.parentId}
+        </if>
+    </select>
 </mapper>

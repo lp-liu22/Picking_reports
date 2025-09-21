@@ -1,11 +1,11 @@
-package com.cb.common.resultEntity;
+package com.cb.common.commonEntity;
 
 import lombok.Data;
 
 import java.io.Serializable;
 
 /**
- * 主要用于分页查询条件，不方便不用这个也行
+ * 主要用于分页查询条件
  * @param <T>
  */
 @Data
@@ -16,7 +16,7 @@ public class PageQuery<T> implements Serializable {
     //默认条数
     public static final int DEFAULT_PAGE_SIZE = 10;
     //最大限制查询条数
-    public static final int MAX_PAGE_SIZE = 100;
+    public static final int MAX_PAGE_SIZE = 1000;
     //页码
     private Integer pageNum = DEFAULT_PAGE_NUM;
 
