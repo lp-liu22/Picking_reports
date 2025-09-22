@@ -47,7 +47,7 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
                     .map(item -> DeviceQueryParam.init(item, childrenByParentId.get(item.getId()) != null ? childrenByParentId.get(item.getId()) : Collections.emptyList()))//组合
                     .collect(Collectors.toList());
         }
-        Integer total = deviceTypeMapper.searchTypeByConditionCount(pageQuery);
+        Integer total = deviceTypeMapper.searchTypeByConditionCount(pageQuery);//满足查询条件数量和最终查询数据条数存在较小差异
         return PageResult.handleSearchData(deviceQueryParams,total, pageQuery.getPageNum(), pageQuery.getValidPageSize());
     }
 }

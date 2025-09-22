@@ -7,6 +7,24 @@
         INSERT INTO device_type(ID, DEVICE_CREATE_USER, DEVICE_DESCRIPTION, DEVICE_STATUS, DEVICE_TYPE_NAME,  PARENT_ID, TYPE_CREATE_TIME, TYPE_UPDATE_TIME)
         VALUES (#{id},#{deviceCreateUser},#{deviceDescription},#{deviceStatus},#{deviceTypeName},#{parentId},NOW(),NOW())
     </insert>
+    <update id="updateTypeById">
+        UPDATE device_type SET type_update_time =NOW()
+        <if test="deviceTypeName != null and deviceTypeName.trim()!=''">
+            ,device_type_name = #{deviceTypeName}
+        </if>
+        <if test="parentId != null and parentId !=''">
+            , parent_id = #{parentId}
+        </if>
+        <if test="deviceDescription !=null and deviceDescription.trim()!=''">
+            ,device_description = #{deviceDescription}
+        </if>
+        WHERE id=#{id}
+    </update>
+    <update id="batchDeleteTypeByIdList">
+        UPDATE device_type SET device_status = '2'
+        WHERE id IN
+        <foreach collection="ids"  open="(" close=")" separator="," item="id">#{id}</foreach>
+    </update>
     <select id="searchTypeByCondition" resultType="com.cb.entity.dataBaseEntity.DeviceTypeEntity">
         SELECT ID, DEVICE_CREATE_USER, DEVICE_DESCRIPTION, DEVICE_STATUS, DEVICE_TYPE_NAME, PARENT_ID,
         TYPE_CREATE_TIME, TYPE_UPDATE_TIME
@@ -82,5 +100,21 @@
         <if test="queryParam.parentId !=null and queryParam.parentId !='' ">
             AND parent_id = #{queryParam.parentId}
         </if>
+    </select>
+    <select id="selectTypeNameCount" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM device_type
+        WHERE device_status !=2
+        <if test="deviceTypeName != null and deviceTypeName.trim()!=''">
+            AND device_type_name = #{deviceTypeName}
+        </if>
+        <if test="parentId != null and parentId !=''">
+            AND id = #{parentId}
+        </if>
+    </select>
+    <select id="selectAllParentType" resultType="com.cb.entity.dataBaseEntity.DeviceTypeEntity">
+        SELECT ID, DEVICE_CREATE_USER, DEVICE_DESCRIPTION, DEVICE_STATUS, DEVICE_TYPE_NAME, PARENT_ID, TYPE_CREATE_TIME, TYPE_UPDATE_TIME
+        FROM device_type
+        WHERE device_status !='2' AND parent_id IN(NULL,0)
     </select>
 </mapper>
