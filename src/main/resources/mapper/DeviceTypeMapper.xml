@@ -115,6 +115,6 @@
     <select id="selectAllParentType" resultType="com.cb.entity.dataBaseEntity.DeviceTypeEntity">
         SELECT ID, DEVICE_CREATE_USER, DEVICE_DESCRIPTION, DEVICE_STATUS, DEVICE_TYPE_NAME, PARENT_ID, TYPE_CREATE_TIME, TYPE_UPDATE_TIME
         FROM device_type
-        WHERE device_status !='2' AND parent_id IN(NULL,0)
+        WHERE device_status !='2' AND (parent_id IS NULL OR parent_id='0')
     </select>
 </mapper>

@@ -1,5 +1,7 @@
 package com.cb.service;
 
+
+import com.alibaba.fastjson.JSONObject;
 import com.cb.common.commonEntity.PageQuery;
 import com.cb.common.commonEntity.PageResult;
 import com.cb.entity.DeviceQueryParam;
@@ -14,4 +16,5 @@ import java.util.List;
 public interface DeviceTypeService {
     int insertNewDeviceType(DeviceTypeEntity typeEntity);
     PageResult<DeviceQueryParam> searchTypeByCondition(PageQuery<DeviceTypeParam> pageQuery);
+    List<JSONObject> getAllParentType();
 }

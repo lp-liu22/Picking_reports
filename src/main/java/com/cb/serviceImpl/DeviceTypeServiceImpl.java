@@ -10,7 +10,7 @@ import com.cb.mapper.DeviceTypeMapper;
 import com.cb.service.DeviceTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import com.alibaba.fastjson.JSONObject;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -49,5 +49,18 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
         }
         Integer total = deviceTypeMapper.searchTypeByConditionCount(pageQuery);//满足查询条件数量和最终查询数据条数存在较小差异
         return PageResult.handleSearchData(deviceQueryParams,total, pageQuery.getPageNum(), pageQuery.getValidPageSize());
+    }
+
+    @Override
+    public List<JSONObject> getAllParentType() {
+        List<DeviceTypeEntity> data = deviceTypeMapper.selectAllParentType();
+        List<JSONObject> result = new ArrayList<>();
+        for (DeviceTypeEntity datum : data) {
+            JSONObject item = new JSONObject();
+            item.put("id",datum.getId());
+            item.put("label",datum.getDeviceTypeName());
+            result.add(item);
+        }
+        return result;
     }
 }
