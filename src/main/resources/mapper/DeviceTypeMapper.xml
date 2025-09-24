@@ -5,7 +5,7 @@
 
     <insert id="insertNewDeviceType" parameterType="com.cb.entity.dataBaseEntity.DeviceTypeEntity">
         INSERT INTO device_type(ID, DEVICE_CREATE_USER, DEVICE_DESCRIPTION, DEVICE_STATUS, DEVICE_TYPE_NAME,  PARENT_ID, TYPE_CREATE_TIME, TYPE_UPDATE_TIME)
-        VALUES (#{id},#{deviceCreateUser},#{deviceDescription},#{deviceStatus},#{deviceTypeName},#{parentId},NOW(),NOW())
+        VALUES (#{id},#{deviceCreateUser},#{deviceDescription},'1',#{deviceTypeName},#{parentId},NOW(),NOW())
     </insert>
     <update id="updateTypeById">
         UPDATE device_type SET type_update_time =NOW()
