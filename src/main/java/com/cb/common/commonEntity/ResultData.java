@@ -12,7 +12,7 @@ import java.io.Serializable;
 public class ResultData<T> implements Serializable {
     private int code;
     private  T data;
-    private String msg;
+    private String message;
     public static <T> ResultData<T> success(){
         return new ResultData<T>(200,null,"操作成功！");
     }
@@ -20,10 +20,10 @@ public class ResultData<T> implements Serializable {
         return new ResultData<T>(200,data,"操作成功！");
     }
     public static <T> ResultData<T> failed(){
-        return new ResultData<T>(401,null,"操作失败！");
+        return new ResultData<T>(403,null,"操作失败！");
     }
     public static <T> ResultData<T> failed(T data){
-        return new ResultData<T>(401,data,"操作失败！");
+        return new ResultData<T>(403,data,"操作失败！");
     }
 
     public static <T> ResultData<T> error(){

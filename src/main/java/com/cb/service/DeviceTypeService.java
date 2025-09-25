@@ -17,4 +17,7 @@ public interface DeviceTypeService {
     int insertNewDeviceType(DeviceTypeEntity typeEntity);
     PageResult<DeviceQueryParam> searchTypeByCondition(PageQuery<DeviceTypeParam> pageQuery);
     List<JSONObject> getAllParentType();
+    List<JSONObject> getAllType();
+    Integer deleteDeviceType(DeviceTypeParam param);
+    Integer updateDeviceType(DeviceTypeParam param);
 }

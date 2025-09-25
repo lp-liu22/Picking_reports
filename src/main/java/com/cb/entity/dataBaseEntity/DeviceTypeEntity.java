@@ -17,7 +17,7 @@ public class DeviceTypeEntity {
     private Long id;//设备类型id
     @Column
     private Long parentId;//若存在二级分类，使用该id表示父级
-    @Column(length = 50)
+    @Column(length = 50,nullable = false)
     private String deviceTypeName;//设备类型名称
     @Column(length = 300)
     private String deviceDescription;//设备类型描述

@@ -13,10 +13,12 @@ public interface DeviceTypeMapper {
     List<DeviceTypeEntity> searchTypeByCondition(PageQuery<DeviceTypeParam> pageQuery);
     Integer searchTypeByConditionCount(PageQuery<DeviceTypeParam> pageQuery);
     //查询类名是否已存在或查找一级分类下是否有子分类
-    Integer selectTypeNameCount(DeviceTypeParam param);
+    Integer selectTypeNameCount(String deviceTypeName);
     //批量删除分类
     Integer batchDeleteTypeByIdList(List<Long> ids);
-    Integer updateTypeById(DeviceTypeEntity entity);
+    Integer updateTypeById(DeviceTypeParam entity);
     //查询所有一级分类
     List<DeviceTypeEntity> selectAllParentType();
+    //查询所有二级分类
+    List<DeviceTypeEntity> selectAllChildType();
 }

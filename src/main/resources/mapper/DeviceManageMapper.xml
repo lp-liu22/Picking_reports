@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cb.mapper.DeviceManageMapper">
+
+    <insert id="insertDeviceData" parameterType="com.cb.entity.dataBaseEntity.DeviceDataEntity">
+        INSERT INTO device_data(ID, CHILD_ID, DEVICE_CODE, DEVICE_CREATE_USER, DEVICE_DESCRIPTION, DEVICE_MANUFACTURER, DEVICE_MODEL, DEVICE_NAME, DEVICE_STATUS, PARENT_ID, TYPE_CREATE_TIME, TYPE_UPDATE_TIME)
+        VALUES (#{id},#{childId},#{deviceCode},#{deviceCreateUser},#{deviceDescription},#{deviceManufacturer},#{deviceModel},#{deviceName},#{deviceStatus},#{parentId},NOW(),NOW())
+    </insert>
+    <select id="searchByConditions" resultType="com.cb.entity.dataBaseEntity.DeviceDataEntity">
+        SELECT id, child_id, device_code, device_create_user, device_description, device_manufacturer, device_model, device_name, device_status, parent_id, type_create_time, type_update_time
+        FROM device_data
+        WHERE device_status !='2'
+        <if test="queryParam.deviceName != null and queryParam.deviceName.trim() !=''">
+            AND device_name LIKE CONCAT('%',#{queryParam.deviceName},'%') ESCAPE '#'
+        </if>
+        <if test="queryParam.deviceManufacturer != null and queryParam.deviceManufacturer.trim() !=''">
+            AND device_manufacturer LIKE CONCAT('%',#{queryParam.deviceManufacturer},'%') ESCAPE '#'
+        </if>
+        <if test="queryParam.deviceModel != null and queryParam.deviceModel.trim() !=''">
+            AND device_model LIKE CONCAT('%',#{queryParam.deviceModel},'%') ESCAPE '#'
+        </if>
+        <if test="queryParam.deviceCreateUser != null and queryParam.deviceCreateUser.trim() !=''">
+            AND device_create_user LIKE CONCAT('%',#{queryParam.deviceCreateUser},'%') ESCAPE '#'
+        </if>
+        <if test="queryParam.childId != null">
+            AND child_id  =  #{queryParam.childId}
+        </if>
+        <if test="queryParam.parentId != null">
+            AND parent_id =  #{queryParam.parentId}
+        </if>
+        <if test="queryParam.beginTime != null">
+            AND type_create_time >=  #{queryParam.beginTime}
+        </if>
+        <if test="queryParam.endTime != null">
+            AND type_create_time &lt;=  #{queryParam.endTime}
+        </if>
+        ORDER BY type_create_time DESC,type_update_time
+        LIMIT #{offset},#{validPageSize}
+    </select>
+    <select id="searchByConditionsCount" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM device_data
+        WHERE device_status !='2'
+        <if test="queryParam.deviceName != null and queryParam.deviceName.trim() !=''">
+            AND device_name LIKE CONCAT('%',#{queryParam.deviceName},'%') ESCAPE '#'
+        </if>
+        <if test="queryParam.deviceManufacturer != null and queryParam.deviceManufacturer.trim() !=''">
+            AND device_manufacturer LIKE CONCAT('%',#{queryParam.deviceManufacturer},'%') ESCAPE '#'
+        </if>
+        <if test="queryParam.deviceModel != null and queryParam.deviceModel.trim() !=''">
+            AND device_model LIKE CONCAT('%',#{queryParam.deviceModel},'%') ESCAPE '#'
+        </if>
+        <if test="queryParam.deviceCreateUser != null and queryParam.deviceCreateUser.trim() !=''">
+            AND device_create_user LIKE CONCAT('%',#{queryParam.deviceCreateUser},'%') ESCAPE '#'
+        </if>
+        <if test="queryParam.childId != null">
+            AND child_id  =  #{queryParam.childId}
+        </if>
+        <if test="queryParam.parentId != null">
+            AND parent_id =  #{queryParam.parentId}
+        </if>
+        <if test="queryParam.beginTime != null">
+            AND type_create_time >=  #{queryParam.beginTime}
+        </if>
+        <if test="queryParam.endTime != null">
+            AND type_create_time &lt;=  #{queryParam.endTime}
+        </if>
+    </select>
+</mapper>
