@@ -8,4 +8,6 @@ import com.cb.entity.dataBaseEntity.DeviceDataEntity;
 public interface DeviceManageService {
     Integer insertDeviceData(DeviceDataEntity entity);
     PageResult<DeviceDataEntity> searchByConditions(PageQuery<DeviceDataParam> pageQuery);
+    Integer deleteDeviceData(Long id);
+    Integer updateDeviceData(DeviceDataParam param);
 }

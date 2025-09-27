@@ -5,8 +5,34 @@
 
     <insert id="insertDeviceData" parameterType="com.cb.entity.dataBaseEntity.DeviceDataEntity">
         INSERT INTO device_data(ID, CHILD_ID, DEVICE_CODE, DEVICE_CREATE_USER, DEVICE_DESCRIPTION, DEVICE_MANUFACTURER, DEVICE_MODEL, DEVICE_NAME, DEVICE_STATUS, PARENT_ID, TYPE_CREATE_TIME, TYPE_UPDATE_TIME)
-        VALUES (#{id},#{childId},#{deviceCode},#{deviceCreateUser},#{deviceDescription},#{deviceManufacturer},#{deviceModel},#{deviceName},#{deviceStatus},#{parentId},NOW(),NOW())
+        VALUES (#{id},#{childId},#{deviceCode},#{deviceCreateUser},#{deviceDescription},#{deviceManufacturer},#{deviceModel},#{deviceName},'1',#{parentId},NOW(),NOW())
     </insert>
+    <update id="deleteDeviceData">
+        UPDATE  device_data  SET device_status = '2' WHERE  id=#{id}
+    </update>
+    <update id="updateDeviceData">
+        UPDATE  device_data
+        SET type_update_time = NOW()
+        <if test="childId != null">
+            , child_id  =  #{childId}
+        </if>
+        <if test="parentId != null">
+            , parent_id =  #{parentId}
+        </if>
+        <if test="deviceName != null and deviceName.trim() !=''">
+            , device_name = #{deviceName}
+        </if>
+        <if test="deviceManufacturer != null and deviceManufacturer.trim() !=''">
+            , device_manufacturer =#{deviceManufacturer}
+        </if>
+        <if test="deviceModel != null and deviceModel.trim() !=''">
+            , device_model =#{deviceModel}
+        </if>
+        <if test="deviceModel != null and deviceModel.trim() !=''">
+            , device_description =#{deviceDescription}
+        </if>
+        WHERE  id=#{id}
+    </update>
     <select id="searchByConditions" resultType="com.cb.entity.dataBaseEntity.DeviceDataEntity">
         SELECT id, child_id, device_code, device_create_user, device_description, device_manufacturer, device_model, device_name, device_status, parent_id, type_create_time, type_update_time
         FROM device_data
@@ -35,7 +61,7 @@
         <if test="queryParam.endTime != null">
             AND type_create_time &lt;=  #{queryParam.endTime}
         </if>
-        ORDER BY type_create_time DESC,type_update_time
+        ORDER BY type_create_time DESC,type_update_time ,id DESC
         LIMIT #{offset},#{validPageSize}
     </select>
     <select id="searchByConditionsCount" resultType="java.lang.Integer">

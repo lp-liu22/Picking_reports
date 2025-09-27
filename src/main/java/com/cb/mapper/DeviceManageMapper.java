@@ -15,4 +15,6 @@ public interface DeviceManageMapper {
     Integer insertDeviceData(DeviceDataEntity entity);
     List<DeviceDataEntity> searchByConditions(PageQuery<DeviceDataParam> pageQuery);
     Integer searchByConditionsCount(PageQuery<DeviceDataParam> pageQuery);
+    Integer deleteDeviceData(Long id);
+    Integer updateDeviceData( DeviceDataParam param);
 }

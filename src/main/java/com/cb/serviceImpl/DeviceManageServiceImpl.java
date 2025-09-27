@@ -32,4 +32,14 @@ public class DeviceManageServiceImpl implements DeviceManageService {
         Integer total = manageMapper.searchByConditionsCount(pageQuery);
         return PageResult.handleSearchData(data,total, pageQuery.getPageNum(), pageQuery.getValidPageSize());
     }
+
+    @Override
+    public Integer deleteDeviceData(Long id) {
+        return manageMapper.deleteDeviceData(id);
+    }
+
+    @Override
+    public Integer updateDeviceData(DeviceDataParam param) {
+        return manageMapper.updateDeviceData(param);
+    }
 }

@@ -10,7 +10,7 @@ import java.util.UUID;
 public class DeviceDataParam {
     private Long id;//设备id
     private String deviceDescription;//设备描述
-    private UUID deviceCode;//设备编码
+    private String deviceCode;//设备编码
     private Long childId;//对应二级分类id
     private Long parentId;//对应父级分类id
     private String deviceName;//设备名称

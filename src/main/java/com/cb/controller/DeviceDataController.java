@@ -37,4 +37,24 @@ public class DeviceDataController {
     public ResultData<PageResult<DeviceDataEntity>> searchByCondition(@RequestBody PageQuery<DeviceDataParam> deviceTypeParamPageQuery){
         return  ResultData.success(manageService.searchByConditions(deviceTypeParamPageQuery));
     }
+    @Operation(summary = "设备删除")
+    @PostMapping("/deleteDeviceData")
+    @SysOperationLog(module="设备管理",operationType = "设备删除",description = "设备删除")
+    public ResultData deleteDeviceData(@RequestBody PageQuery<DeviceDataParam> deviceTypeParamPageQuery){
+        Integer result = manageService.deleteDeviceData(deviceTypeParamPageQuery.getQueryParam().getId());
+        if(result < 1){
+            return new ResultData(406,null,"设备新增失败！");
+        }
+        return ResultData.success();
+    }
+    @Operation(summary = "设备修改")
+    @PostMapping("/updateDeviceData")
+    @SysOperationLog(module="设备管理",operationType = "设备新增",description = "新增设备")
+    public ResultData<?> updateDeviceData(@RequestBody DeviceDataParam param){
+        Integer result = manageService.updateDeviceData(param);
+        if(result < 1){
+            return new ResultData(406,null,"设备删除失败！");
+        }
+        return ResultData.success();
+    }
 }
