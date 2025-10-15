@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cb.mapper.DeviceStandardCountMapper">
+
+    <insert id="insertDeviceOfStandard" parameterType="com.cb.entity.DeviceStandardAddOrEditParam">
+        INSERT INTO device_standard_count(STANDARD_ID, ID, STANDARD_COUNT)
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            (#{standardId}, #{item.id}
+            <if test="item.standardCount != null and item.standardCount != ''">
+                , #{item.standardCount}
+            </if>
+            <if test="item.standardCount == null or item.standardCount == ''">
+                , '0'
+            </if>
+            )
+        </foreach>
+    </insert>
+
+    <select id="selectDeviceOfStandard" resultType="com.cb.entity.DeviceStandardCountVo">
+        SELECT ds.id, ds.standard_count, dd.device_description, dd.device_code, dd.child_id, dd.parent_id, dd.device_name
+        FROM device_standard_count ds LEFT JOIN device_data dd ON ds.id = dd.id
+        WHERE ds.standard_id = #{standardId}
+        ORDER BY ds.id DESC
+    </select>
+
+    <delete id="deleteDeviceOfStandard">
+        DELETE FROM device_standard_count WHERE standard_id = #{standardId}
+    </delete>
+
+</mapper>

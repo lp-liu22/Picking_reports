@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cb.mapper.DeviceStandardMapper">
+
+    <insert id="insertDeviceStandard" parameterType="com.cb.entity.DeviceStandardAddOrEditParam" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO device_standard(ID,     STANDARD_NAME,      STANDARD_DESCRIPTION,   CREATE_TIME,    CREATE_USER,    STANDARD_STATUS)
+                            VALUES (#{id},  #{standardName},    #{standardDescription}, NOW(),          #{createUser},  '1')
+    </insert>
+
+    <update id="updateDeviceStandard">
+        UPDATE  device_standard
+        SET update_time = NOW()
+        <if test="standardName != null and standardName !=''">
+            , standard_name = #{standardName}
+        </if>
+        <if test="standardDescription != null and standardDescription != ''">
+            , standard_description = #{standardDescription}
+        </if>
+        WHERE id = #{id}
+    </update>
+
+    <select id="searchByConditions" resultType="com.cb.entity.dataBaseEntity.DeviceStandardEntity">
+        SELECT id, standard_name, standard_description, create_time, update_time, create_user
+        FROM device_standard
+        WHERE standard_status != '0'
+        <if test="queryParam.standardName != null and queryParam.standardName.trim() != ''">
+            AND standard_name LIKE CONCAT('%', #{queryParam.standardName}, '%') ESCAPE '#'
+        </if>
+        <if test="queryParam.beginTime != null">
+            AND create_time >= #{queryParam.beginTime}
+        </if>
+        <if test="queryParam.endTime != null">
+            AND create_time &lt;= #{queryParam.endTime}
+        </if>
+        <if test="queryParam.createUser != null and queryParam.createUser.trim() != ''">
+            AND create_user LIKE CONCAT('%', #{queryParam.createUser}, '%') ESCAPE '#'
+        </if>
+        ORDER BY create_time DESC, update_time DESC
+        LIMIT #{offset}, #{validPageSize}
+    </select>
+
+    <select id="searchByConditionsCount" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM device_standard
+        WHERE standard_status != '0'
+        <if test="queryParam.standardName != null and queryParam.standardName.trim() != ''">
+            AND standard_name LIKE CONCAT('%', #{queryParam.standardName}, '%') ESCAPE '#'
+        </if>
+        <if test="queryParam.beginTime != null">
+            AND create_time >= #{queryParam.beginTime}
+        </if>
+        <if test="queryParam.endTime != null">
+            AND create_time &lt;= #{queryParam.endTime}
+        </if>
+        <if test="queryParam.createUser != null and queryParam.createUser.trim() != ''">
+            AND create_user LIKE CONCAT('%', #{queryParam.createUser}, '%') ESCAPE '#'
+        </if>
+    </select>
+
+    <update id="deleteDeviceStandard">
+        UPDATE device_standard SET standard_status = '0' WHERE id = #{id}
+    </update>
+
+</mapper>
