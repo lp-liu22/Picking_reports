@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cb.mapper.SysUserMapper">
+    <insert id="addUserInDept">
+        INSERT INTO sys_user_dept( authority, dept_id, user_id,join_time) VALUES
+        <foreach collection="userIds" item="userId" separator=",">
+            (#{authority},#{deptId},#{userId},now())
+        </foreach>
+    </insert>
+    <update id="updateAuthorityOfUser">
+        UPDATE  sys_user_dept SET authority=#{authority} WHERE id=#{id}
+    </update>
+    <delete id="deleteUserInDept">
+        DELETE  FROM sys_user_dept WHERE sys_user_dept.id IN
+        <foreach collection="ids" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+
+    <select id="searchUserInfoByConditions" resultType="com.cb.entity.SysUserQueryParam">
+        SELECT U.id AS id,U.user_name AS userName,U.person_name AS personName,D.id AS deptId,UD.authority,D.dept_name AS deptName,D.dept_parent_id AS deptParentId,UD.id AS dept_userOfId,UD.join_time AS joinTime
+        FROM sys_user_dept AS UD
+        LEFT JOIN sys_user AS U ON UD.user_id = U.id
+        LEFT JOIN sys_dept AS D ON UD.dept_id = D.id
+        <where>
+            <if test="queryParam.userName !=null and queryParam.userName !=''">
+                AND (U.user_name LIKE CONCAT('%',#{queryParam.userName},'%') ESCAPE '#' OR U.person_name LIKE
+                CONCAT('%',#{queryParam.userName},'%') ESCAPE '#')
+            </if>
+            <if test="queryParam.authority!=null and queryParam.authority!=''">
+                AND UD.authority = #{queryParam.authority}
+            </if>
+            <if test="queryParam.deptParentId!=null">
+                AND D.id = #{queryParam.deptId} AND D.dept_parent_id =#{queryParam.deptParentId}
+            </if>
+            <if test="queryParam.deptParentId==null and queryParam.deptId !=null">
+                AND D.id = #{queryParam.deptId}
+            </if>
+        </where>
+        LIMIT #{offset}, #{validPageSize}
+    </select>
+    <select id="getUsersOfAllocatableDept" resultType="com.cb.entity.dataBaseEntity.UserEntity">
+        SELECT  * FROM sys_user WHERE status!='2'
+    </select>
+    <select id="searchUserInfoByConditionsCount" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM sys_user_dept AS UD
+        LEFT JOIN sys_user AS U ON UD.user_id = U.id
+        LEFT JOIN sys_dept AS D ON UD.dept_id = D.id
+        <where>
+            <if test="queryParam.userName !=null and queryParam.userName !=''">
+                AND (U.user_name LIKE CONCAT('%',#{queryParam.userName},'%') ESCAPE '#' OR U.person_name LIKE
+                CONCAT('%',#{queryParam.userName},'%') ESCAPE '#')
+            </if>
+            <if test="queryParam.authority!=null and queryParam.authority!=''">
+                AND UD.authority = #{queryParam.authority}
+            </if>
+            <if test="queryParam.deptParentId!=null">
+                AND D.id = #{queryParam.deptId} AND D.dept_parent_id =#{queryParam.deptParentId}
+            </if>
+            <if test="queryParam.deptParentId==null and queryParam.deptId !=null">
+                AND D.id = #{queryParam.deptId}
+            </if>
+        </where>
+    </select>
+</mapper>

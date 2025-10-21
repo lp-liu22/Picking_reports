@@ -21,8 +21,10 @@ public class DeviceStandardEntity {
     @Column(length = 500)
     private String standardDescription;//设备标准描述
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    @Column(columnDefinition = "datetime")
     private Date createTime;//设备标准创建时间
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    @Column(columnDefinition = "datetime")
     private Date updateTime;//设备标准修改时间
     @Column(length = 100)
     private String createUser;//设备标准创建人

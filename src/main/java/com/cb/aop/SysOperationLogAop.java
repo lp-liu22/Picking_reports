@@ -77,7 +77,7 @@ public class SysOperationLogAop {
         // 获取HTTP请求信息：URL、请求方式、IP
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         if (attributes != null) {
-            String userName = "匿名用户";
+            String userName = "匿名访客";
             HttpServletRequest request = attributes.getRequest();
             if(request.getHeader("user_name")!=null){
                 userName = request.getHeader("user_name");

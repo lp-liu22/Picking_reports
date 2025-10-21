@@ -2,6 +2,7 @@ package com.cb.entity.dataBaseEntity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import org.hibernate.annotations.Comment;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -22,6 +23,7 @@ public class DeviceTypeEntity {
     @Column(length = 300)
     private String deviceDescription;//设备类型描述
     @Column(length = 1,columnDefinition = "CHAR(1)")
+    @Comment("设备类型使用状态：0未启用，1启用，2删除")
     private char deviceStatus;//设备类型使用状态：0未启用，1启用，2删除
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date typeCreateTime;//设备类型创建时间

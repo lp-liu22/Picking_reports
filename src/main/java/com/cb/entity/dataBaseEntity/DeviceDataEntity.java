@@ -2,6 +2,7 @@ package com.cb.entity.dataBaseEntity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import org.hibernate.annotations.Comment;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -19,6 +20,7 @@ public class DeviceDataEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY) // 主键自增
     private Long id;//设备id
     @Column(columnDefinition = "CHAR(36)", nullable = false, unique = true)
+    @Comment("设备编码")
     private String deviceCode;//设备编码
     @Column(nullable = false)
     private Long childId;//对应二级分类id
@@ -29,13 +31,18 @@ public class DeviceDataEntity {
     @Column(length = 300)
     private String deviceDescription;//设备描述
     @Column
+    @Comment("设备生产厂商")
     private String deviceManufacturer;//设备生产厂商
     @Column
+    @Comment(("设备型号"))
     private String deviceModel;//设备型号
     @Column(length = 1,columnDefinition = "CHAR(1)")
+    @Comment("设备使用状态：0未启用，1启用，2删除")
     private char deviceStatus;//设备使用状态：0未启用，1启用，2删除
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    @Column(columnDefinition = "datetime")
     private Date typeCreateTime;//设备录入时间
+    @Column(columnDefinition = "datetime")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date typeUpdateTime;//设备修改时间
     @Column(length = 50)

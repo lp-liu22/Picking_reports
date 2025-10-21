@@ -14,22 +14,22 @@ public class ResultData<T> implements Serializable {
     private  T data;
     private String message;
     public static <T> ResultData<T> success(){
-        return new ResultData<T>(200,null,"操作成功！");
+        return new ResultData<T>(200,null,"请求成功！");
     }
     public static <T> ResultData<T> success(T data){
-        return new ResultData<T>(200,data,"操作成功！");
+        return new ResultData<T>(200,data,"请求成功！");
     }
     public static <T> ResultData<T> failed(){
-        return new ResultData<T>(403,null,"操作失败！");
+        return new ResultData<T>(403,null,"请求失败！");
     }
     public static <T> ResultData<T> failed(T data){
-        return new ResultData<T>(403,data,"操作失败！");
+        return new ResultData<T>(403,data,"请求失败！");
     }
 
     public static <T> ResultData<T> error(){
-        return new ResultData<T>(500,null,"操作异常");
+        return new ResultData<T>(500,null,"请求异常");
     }
     public static <T> ResultData<T> error(T data){
-        return new ResultData<T>(500,data,"操作异常");
+        return new ResultData<T>(500,data,"请求异常");
     }
 }

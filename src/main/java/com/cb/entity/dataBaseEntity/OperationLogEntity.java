@@ -49,9 +49,9 @@ public class OperationLogEntity {
     @Column(columnDefinition = "text")
     private String responseResult;
     //执行时间
+    @Column
     private Long executeTime;
-
-//    @CreationTimestamp // 自动填充当前时间
+    @Column(columnDefinition = "datetime")
     private Date operationTime;
     //执行结果
     @Column(columnDefinition = "tinyint(1)") // 布尔值用tinyint存储
