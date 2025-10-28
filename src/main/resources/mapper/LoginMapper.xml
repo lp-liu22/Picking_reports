@@ -4,7 +4,7 @@
 <mapper namespace="com.cb.mapper.LoginMapper">
 
     <select id="login" resultType="com.cb.entity.dataBaseEntity.UserEntity">
-        SELECT id, authority, create_time, dept_id, person_name, phone_number, status, user_name
+        SELECT id, create_time, person_name, phone_number, status, user_name
         FROM sys_user
         WHERE user_name = #{userName} AND user_password = #{password}
     </select>

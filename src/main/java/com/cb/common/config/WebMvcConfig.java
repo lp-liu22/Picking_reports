@@ -2,6 +2,7 @@ package com.cb.common.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
@@ -17,5 +18,11 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 .allowedMethods("GET", "POST", "PUT", "DELETE")
                 .allowedHeaders("*")
                 .maxAge(3600);
+    }
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        // 自定义前端资源路径：将 / 映射到 classpath:/frontend/
+        registry.addResourceHandler("/**")  // 匹配所有请求路径
+                .addResourceLocations("file:./frontend/");  // 资源实际存放目录
     }
 }

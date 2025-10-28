@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ControllerAdvice
 public class GlobalExceptionHandler {
     private static  final Logger log = LoggerFactory.getLogger(GlobalExceptionHandler.class);
+    //默认异常返500
     @ExceptionHandler(Exception.class)
     @ResponseBody
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
