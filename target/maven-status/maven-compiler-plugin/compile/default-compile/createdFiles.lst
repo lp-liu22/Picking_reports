@@ -34,6 +34,7 @@ com\cb\mapper\DeviceTypeMapper.class
 com\cb\serviceImpl\LoginServiceImpl.class
 com\cb\entity\DeviceStandardCountVo.class
 com\cb\service\DeviceStandardService.class
+com\cb\controller\IndexController.class
 com\cb\common\commonEntity\PageQuery.class
 com\cb\common\commonEntity\PageResult.class
 com\cb\mapper\DeviceStandardCountMapper.class

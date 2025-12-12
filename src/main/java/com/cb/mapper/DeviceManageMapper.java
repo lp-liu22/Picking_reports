@@ -1,11 +1,8 @@
 package com.cb.mapper;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.cb.common.commonEntity.PageQuery;
 import com.cb.entity.DeviceDataParam;
-import com.cb.entity.DeviceTypeParam;
-import com.cb.entity.dataBaseEntity.DeviceDataEntity;
-import com.cb.entity.dataBaseEntity.DeviceTypeEntity;
+import com.cb.entity.dataBaseEntity_jpa.DeviceDataEntity;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

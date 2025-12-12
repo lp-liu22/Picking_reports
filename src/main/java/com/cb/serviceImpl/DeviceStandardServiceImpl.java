@@ -6,14 +6,13 @@ import com.cb.common.util.CustomizeStringUtils;
 import com.cb.entity.DeviceStandardAddOrEditParam;
 import com.cb.entity.DeviceStandardCountVo;
 import com.cb.entity.DeviceStandardQueryParam;
-import com.cb.entity.dataBaseEntity.DeviceStandardEntity;
+import com.cb.entity.dataBaseEntity_jpa.DeviceStandardEntity;
 import com.cb.mapper.DeviceStandardCountMapper;
 import com.cb.mapper.DeviceStandardMapper;
 import com.cb.service.DeviceStandardService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.Collections;
 import java.util.List;
 
 @Service

@@ -27,7 +27,15 @@ public class PageResult<T> implements Serializable {
     private boolean isHaveNextPage;
     //是否有上一页
     private boolean isHavePreviousPage;
-
+    /**
+     * 处理分页查询结果
+     * @param data 分页查询结果数据列表
+     * @param total 总条数
+     * @param pageNum 页码
+     * @param pageSize 每页条数
+     * @param <T> 数据类型
+     * @return 分页查询结果对象
+     */
     public static <T>  PageResult<T> handleSearchData(List<T> data,int total,int pageNum,int pageSize){
         PageResult<T> result = new PageResult<>();
         result.setData(data!=null?data: Collections.emptyList());

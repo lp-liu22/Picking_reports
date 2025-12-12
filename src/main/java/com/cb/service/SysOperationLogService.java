@@ -1,6 +1,6 @@
 package com.cb.service;
 
-import com.cb.entity.dataBaseEntity.OperationLogEntity;
+import com.cb.entity.dataBaseEntity_jpa.OperationLogEntity;
 import com.cb.mapper.SysOperationLogMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

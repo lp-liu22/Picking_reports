@@ -1,7 +1,7 @@
 package com.cb.serviceImpl;
 
 import com.cb.common.commonEntity.ResultData;
-import com.cb.entity.dataBaseEntity.UserEntity;
+import com.cb.entity.dataBaseEntity_jpa.UserEntity;
 import com.cb.mapper.LoginMapper;
 import com.cb.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;

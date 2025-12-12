@@ -5,7 +5,7 @@ import com.cb.common.commonEntity.PageResult;
 import com.cb.entity.DeviceStandardAddOrEditParam;
 import com.cb.entity.DeviceStandardCountVo;
 import com.cb.entity.DeviceStandardQueryParam;
-import com.cb.entity.dataBaseEntity.DeviceStandardEntity;
+import com.cb.entity.dataBaseEntity_jpa.DeviceStandardEntity;
 
 import java.util.List;
 

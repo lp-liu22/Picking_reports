@@ -7,7 +7,7 @@ import com.cb.common.commonEntity.ResultData;
 import com.cb.entity.DeviceStandardAddOrEditParam;
 import com.cb.entity.DeviceStandardCountVo;
 import com.cb.entity.DeviceStandardQueryParam;
-import com.cb.entity.dataBaseEntity.DeviceStandardEntity;
+import com.cb.entity.dataBaseEntity_jpa.DeviceStandardEntity;
 import com.cb.service.DeviceStandardService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;

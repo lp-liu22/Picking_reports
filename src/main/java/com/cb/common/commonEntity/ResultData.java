@@ -6,6 +6,10 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
+/**
+ * 通用返回结果类
+ * @param <T>
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

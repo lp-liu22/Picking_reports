@@ -1,7 +1,7 @@
 package com.cb.serviceImpl;
 
 import com.alibaba.fastjson.JSONObject;
-import com.cb.entity.dataBaseEntity.DeptEntity;
+import com.cb.entity.dataBaseEntity_jpa.DeptEntity;
 import com.cb.mapper.DeptMapper;
 import com.cb.service.DeptService;
 import org.springframework.beans.factory.annotation.Autowired;

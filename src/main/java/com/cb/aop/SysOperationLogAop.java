@@ -1,7 +1,7 @@
 package com.cb.aop;
 
 import com.cb.common.annotation.SysOperationLog;
-import com.cb.entity.dataBaseEntity.OperationLogEntity;
+import com.cb.entity.dataBaseEntity_jpa.OperationLogEntity;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.cb.service.SysOperationLogService;

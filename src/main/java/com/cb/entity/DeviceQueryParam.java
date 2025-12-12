@@ -1,6 +1,6 @@
 package com.cb.entity;
 
-import com.cb.entity.dataBaseEntity.DeviceTypeEntity;
+import com.cb.entity.dataBaseEntity_jpa.DeviceTypeEntity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;

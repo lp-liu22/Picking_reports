@@ -17,6 +17,10 @@ import java.util.List;
 public class DeptController {
     @Autowired
     private DeptService deptService;
+    /**
+     * 获取部门树
+     * @return 部门树列表
+     */
     @GetMapping("getDeptTree")
     public ResultData<List<JSONObject>> getDeptTree(){
         List<JSONObject> res = deptService.getAllDeptTree();

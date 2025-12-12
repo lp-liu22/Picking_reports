@@ -3,7 +3,7 @@ package com.cb.mapper;
 import com.cb.common.commonEntity.PageQuery;
 import com.cb.entity.SysUserQueryParam;
 import com.cb.entity.UserDeptAddParam;
-import com.cb.entity.dataBaseEntity.UserEntity;
+import com.cb.entity.dataBaseEntity_jpa.UserEntity;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

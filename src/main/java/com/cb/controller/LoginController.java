@@ -2,12 +2,11 @@ package com.cb.controller;
 
 import com.cb.common.commonEntity.ResultData;
 import com.cb.entity.LoginParam;
-import com.cb.entity.dataBaseEntity.UserEntity;
+import com.cb.entity.dataBaseEntity_jpa.UserEntity;
 import com.cb.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController

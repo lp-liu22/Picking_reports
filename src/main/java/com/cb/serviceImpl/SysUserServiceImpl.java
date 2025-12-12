@@ -5,7 +5,7 @@ import com.cb.common.commonEntity.PageResult;
 import com.cb.common.util.CustomizeStringUtils;
 import com.cb.entity.SysUserQueryParam;
 import com.cb.entity.UserDeptAddParam;
-import com.cb.entity.dataBaseEntity.UserEntity;
+import com.cb.entity.dataBaseEntity_jpa.UserEntity;
 import com.cb.mapper.SysUserMapper;
 import com.cb.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;

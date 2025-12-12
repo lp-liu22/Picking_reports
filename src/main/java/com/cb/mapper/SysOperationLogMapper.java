@@ -1,6 +1,6 @@
 package com.cb.mapper;
 
-import com.cb.entity.dataBaseEntity.OperationLogEntity;
+import com.cb.entity.dataBaseEntity_jpa.OperationLogEntity;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper

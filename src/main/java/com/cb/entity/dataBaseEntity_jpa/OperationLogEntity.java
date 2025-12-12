@@ -1,4 +1,4 @@
-package com.cb.entity.dataBaseEntity;
+package com.cb.entity.dataBaseEntity_jpa;
 
 import lombok.Data;
 
@@ -7,7 +7,6 @@ import java.util.Date;
 /**
  * 日志表
  */
-import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 

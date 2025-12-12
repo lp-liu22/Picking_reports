@@ -1,10 +1,9 @@
-package com.cb.entity.dataBaseEntity;
+package com.cb.entity.dataBaseEntity_jpa;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
-import org.hibernate.annotations.Comment;
 
 import javax.persistence.*;
 import java.util.Date;

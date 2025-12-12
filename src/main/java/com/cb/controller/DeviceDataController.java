@@ -5,7 +5,7 @@ import com.cb.common.commonEntity.PageQuery;
 import com.cb.common.commonEntity.PageResult;
 import com.cb.common.commonEntity.ResultData;
 import com.cb.entity.DeviceDataParam;
-import com.cb.entity.dataBaseEntity.DeviceDataEntity;
+import com.cb.entity.dataBaseEntity_jpa.DeviceDataEntity;
 import com.cb.service.DeviceManageService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;

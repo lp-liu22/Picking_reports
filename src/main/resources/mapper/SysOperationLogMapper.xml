@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cb.mapper.SysOperationLogMapper">
     <!-- 插入日志 -->
-    <insert id="insert" parameterType="com.cb.entity.dataBaseEntity.OperationLogEntity" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insert" parameterType="com.cb.entity.dataBaseEntity_jpa.OperationLogEntity" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO sys_operation_log (
             username,
             ip_address,

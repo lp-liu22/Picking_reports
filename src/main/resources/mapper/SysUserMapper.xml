@@ -40,7 +40,7 @@
         </where>
         LIMIT #{offset}, #{validPageSize}
     </select>
-    <select id="getUsersOfAllocatableDept" resultType="com.cb.entity.dataBaseEntity.UserEntity">
+    <select id="getUsersOfAllocatableDept" resultType="com.cb.entity.dataBaseEntity_jpa.UserEntity">
         SELECT  * FROM sys_user WHERE status!='2'
     </select>
     <select id="searchUserInfoByConditionsCount" resultType="java.lang.Integer">

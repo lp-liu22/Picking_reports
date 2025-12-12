@@ -9,7 +9,10 @@ import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
  */
 @Configuration
 public class JacksonConfig {
-
+    /**
+     * 配置Jackson2ObjectMapperBuilder Bean
+     * @return Jackson2ObjectMapperBuilder对象
+     */
     @Bean
     public Jackson2ObjectMapperBuilder jackson2ObjectMapperBuilder() {
         return new Jackson2ObjectMapperBuilder();

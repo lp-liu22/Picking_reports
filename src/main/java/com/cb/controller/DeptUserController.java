@@ -18,10 +18,20 @@ import java.util.List;
 public class DeptUserController {
     @Autowired
     private SysUserService sysUserService;
+    /**
+     * 分页查询部门已关联用户的数据
+     * @param paramPageQuery 分页查询参数
+     * @return 分页查询结果
+     */
     @PostMapping("searchUserInfoByConditions")
     public ResultData<PageResult<SysUserQueryParam>> searchUserInfoByConditions(@RequestBody PageQuery<SysUserQueryParam> paramPageQuery){
         return ResultData.success(sysUserService.searchUserInfoByConditions(paramPageQuery));
     }
+    /**
+     * 取消用户-部门联系
+     * @param ids 用户ID列表
+     * @return 操作结果
+     */
     @PostMapping("deleteUserInDept")
     public ResultData deleteUserInDept(@RequestBody List<Long> ids){
         return ResultData.success(sysUserService.deleteUserInDept(ids));

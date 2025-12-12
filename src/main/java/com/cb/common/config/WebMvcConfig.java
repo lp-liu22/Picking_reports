@@ -6,7 +6,7 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
- *
+ * 主要解决跨域问题
  */
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
@@ -19,6 +19,10 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 .allowedHeaders("*")
                 .maxAge(3600);
     }
+    /**
+     * 配置静态资源映射
+     * @param registry ResourceHandlerRegistry对象
+     */
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         // 自定义前端资源路径：将 / 映射到 classpath:/frontend/

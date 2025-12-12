@@ -3,9 +3,8 @@ package com.cb.mapper;
 import com.cb.common.commonEntity.PageQuery;
 import com.cb.entity.DeviceStandardAddOrEditParam;
 import com.cb.entity.DeviceStandardQueryParam;
-import com.cb.entity.dataBaseEntity.DeviceStandardEntity;
+import com.cb.entity.dataBaseEntity_jpa.DeviceStandardEntity;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Options;
 
 import java.util.List;
 

@@ -4,7 +4,7 @@ import com.cb.common.commonEntity.PageQuery;
 import com.cb.common.commonEntity.PageResult;
 import com.cb.entity.SysUserQueryParam;
 import com.cb.entity.UserDeptAddParam;
-import com.cb.entity.dataBaseEntity.UserEntity;
+import com.cb.entity.dataBaseEntity_jpa.UserEntity;
 
 import java.util.List;
 

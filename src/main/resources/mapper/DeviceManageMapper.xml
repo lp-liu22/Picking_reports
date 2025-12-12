@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cb.mapper.DeviceManageMapper">
 
-    <insert id="insertDeviceData" parameterType="com.cb.entity.dataBaseEntity.DeviceDataEntity">
+    <insert id="insertDeviceData" parameterType="com.cb.entity.dataBaseEntity_jpa.DeviceDataEntity">
         INSERT INTO device_data(ID, CHILD_ID, DEVICE_CODE, DEVICE_CREATE_USER, DEVICE_DESCRIPTION, DEVICE_MANUFACTURER, DEVICE_MODEL, DEVICE_NAME, DEVICE_STATUS, PARENT_ID, TYPE_CREATE_TIME, TYPE_UPDATE_TIME)
         VALUES (#{id},#{childId},#{deviceCode},#{deviceCreateUser},#{deviceDescription},#{deviceManufacturer},#{deviceModel},#{deviceName},'1',#{parentId},NOW(),NOW())
     </insert>
@@ -33,7 +33,7 @@
         </if>
         WHERE  id=#{id}
     </update>
-    <select id="searchByConditions" resultType="com.cb.entity.dataBaseEntity.DeviceDataEntity">
+    <select id="searchByConditions" resultType="com.cb.entity.dataBaseEntity_jpa.DeviceDataEntity">
         SELECT id, child_id, device_code, device_create_user, device_description, device_manufacturer, device_model, device_name, device_status, parent_id, type_create_time, type_update_time
         FROM device_data
         WHERE device_status !='2'

@@ -6,7 +6,7 @@ import com.cb.common.commonEntity.PageQuery;
 import com.cb.common.commonEntity.PageResult;
 import com.cb.entity.DeviceQueryParam;
 import com.cb.entity.DeviceTypeParam;
-import com.cb.entity.dataBaseEntity.DeviceTypeEntity;
+import com.cb.entity.dataBaseEntity_jpa.DeviceTypeEntity;
 
 import java.util.List;
 

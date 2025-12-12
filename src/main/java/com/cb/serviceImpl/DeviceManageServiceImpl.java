@@ -4,7 +4,7 @@ import com.cb.common.commonEntity.PageQuery;
 import com.cb.common.commonEntity.PageResult;
 import com.cb.common.util.CustomizeStringUtils;
 import com.cb.entity.DeviceDataParam;
-import com.cb.entity.dataBaseEntity.DeviceDataEntity;
+import com.cb.entity.dataBaseEntity_jpa.DeviceDataEntity;
 import com.cb.mapper.DeviceManageMapper;
 import com.cb.service.DeviceManageService;
 import org.springframework.stereotype.Service;
