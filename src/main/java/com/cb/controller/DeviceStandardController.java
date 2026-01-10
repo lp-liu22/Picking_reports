@@ -24,6 +24,11 @@ public class DeviceStandardController {
     @Autowired
     private DeviceStandardService standardService;
 
+    /**
+     * 设备标准新增
+     * @param param
+     * @return
+     */
     @Operation(summary = "设备标准新增")
     @PostMapping("/addStandard")
     @SysOperationLog(module="设备标准",operationType = "标准新增",description = "新增标准")
@@ -34,7 +39,11 @@ public class DeviceStandardController {
         }
         return ResultData.success();
     }
-
+    /**
+     * 设备标准修改
+     * @param param
+     * @return
+     */
     @Operation(summary = "设备标准修改")
     @PostMapping("/editStandard")
     @SysOperationLog(module="设备标准",operationType = "标准修改",description = "修改标准")
@@ -45,14 +54,22 @@ public class DeviceStandardController {
         }
         return ResultData.success();
     }
-
+    /**
+     * 设备标准条件查询
+     * @param queryParam
+     * @return
+     */
     @Operation(summary = "设备标准条件查询")
     @PostMapping("/searchByCondition")
     @SysOperationLog(module="设备标准",operationType = "标准查询",description = "标准查询")
     public ResultData<PageResult<DeviceStandardEntity>> searchByCondition(@RequestBody PageQuery<DeviceStandardQueryParam> queryParam){
         return  ResultData.success(standardService.searchByConditions(queryParam));
     }
-
+    /**
+     * 设备标准删除
+     * @param id
+     * @return
+     */
     @Operation(summary = "设备标准删除")
     @PostMapping("/deleteStandard")
     @SysOperationLog(module="设备标准",operationType = "标准删除",description = "标准删除")
@@ -63,7 +80,11 @@ public class DeviceStandardController {
         }
         return ResultData.success();
     }
-
+    /**
+     * 获取设备标准中的设备
+     * @param id
+     * @return
+     */
     @Operation(summary = "获取设备标准中的设备")
     @PostMapping("/getStandardDevice")
     @SysOperationLog(module="设备标准",operationType = "标准设备查询",description = "标准设备查询")

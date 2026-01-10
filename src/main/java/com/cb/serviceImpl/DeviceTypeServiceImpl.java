@@ -29,7 +29,11 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
         }
         return deviceTypeMapper.insertNewDeviceType(typeEntity);
     }
-
+    /**
+     * 根据条件查询设备分类
+     * @param pageQuery
+     * @return
+     */
     @Override
     public PageResult<DeviceQueryParam> searchTypeByCondition(PageQuery<DeviceTypeParam> pageQuery) {
         //转义特殊字符
@@ -54,7 +58,10 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
         Integer total = deviceTypeMapper.searchTypeByConditionCount(pageQuery);//满足查询条件数量和最终查询数据条数存在较小差异
         return PageResult.handleSearchData(deviceQueryParams,total, pageQuery.getPageNum(), pageQuery.getValidPageSize());
     }
-
+    /**
+     * 查询所有一级分类
+     * @return
+     */
     @Override
     public List<JSONObject> getAllParentType() {
         List<DeviceTypeEntity> data = deviceTypeMapper.selectAllParentType();
@@ -67,7 +74,10 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
         }
         return result;
     }
-
+    /**
+     * 查询所有一级分类和二级分类
+     * @return
+     */
     @Override
     public List<JSONObject> getAllType() {
         List<DeviceTypeEntity> childData = deviceTypeMapper.selectAllChildType();
@@ -94,7 +104,11 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
         }
         return result;
     }
-
+    /**
+     * 删除设备分类
+     * @param param
+     * @return
+     */
     @Override
     public Integer deleteDeviceType(DeviceTypeParam param) {
         //删除前需检查分类是否在使用
@@ -119,7 +133,11 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
         ids.add(param.getId());
         return deviceTypeMapper.batchDeleteTypeByIdList(ids);
     }
-
+    /**
+     * 更新设备分类
+     * @param param
+     * @return
+     */
     @Override
     public Integer updateDeviceType(DeviceTypeParam param) {
         int nameCount = deviceTypeMapper.selectTypeNameCount(param.getDeviceTypeName());

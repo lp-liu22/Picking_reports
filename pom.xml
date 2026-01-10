@@ -20,7 +20,7 @@
 <properties>
     <java.version>1.8</java.version>
     <!-- MySQL 版本适配5.7.44 -->
-    <mysql.version>5.1.49</mysql.version>
+    <mysql.version>8.0.33</mysql.version>
     <!-- MyBatis 版本 -->
     <mybatis-plus.version>3.5.3.1</mybatis-plus.version>
     <!-- Redis 客户端版本（适配Redis 5.0.14.1） -->

@@ -21,6 +21,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class DeviceDataController {
     @Autowired
     private DeviceManageService manageService;
+
+    /**
+     * 新增设备
+     * @param deviceDataEntity
+     * @return
+     */
     @Operation(summary = "设备新增")
     @PostMapping("/add")
     @SysOperationLog(module="设备管理",operationType = "设备新增",description = "新增设备")
@@ -31,6 +37,12 @@ public class DeviceDataController {
         }
         return ResultData.success();
     }
+
+    /**
+     * 设备条件查询
+     * @param deviceTypeParamPageQuery
+     * @return
+     */
     @Operation(summary = "设备条件查询")
     @PostMapping("/searchByCondition")
     @SysOperationLog(module="设备管理",operationType = "设备查询",description = "设备查询")
@@ -46,10 +58,14 @@ public class DeviceDataController {
             return new ResultData(406,null,"设备新增失败！");
         }
         return ResultData.success();
-    }
+    }/**
+     * 设备修改
+     * @param param
+     * @return
+     */
     @Operation(summary = "设备修改")
     @PostMapping("/updateDeviceData")
-    @SysOperationLog(module="设备管理",operationType = "设备新增",description = "新增设备")
+    @SysOperationLog(module="设备管理",operationType = "设备修改",description = "设备修改")
     public ResultData<?> updateDeviceData(@RequestBody DeviceDataParam param){
         Integer result = manageService.updateDeviceData(param);
         if(result < 1){

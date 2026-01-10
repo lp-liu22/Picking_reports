@@ -13,6 +13,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class LoginController {
     @Autowired
     private LoginService loginService;
+    /**
+     * 用户登录
+     * @param loginParam
+     * @return
+     */
+    //TODO 该接口还未完善
     @PostMapping("login")
     public ResultData<UserEntity> login(@RequestBody LoginParam loginParam){
         return loginService.login(loginParam.getUserName(), loginParam.getPassword());

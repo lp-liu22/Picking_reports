@@ -16,11 +16,20 @@ import java.util.List;
 public class DeviceManageServiceImpl implements DeviceManageService {
     @Resource
     private DeviceManageMapper manageMapper;
+    /**
+     * 新增设备数据
+     * @param entity
+     * @return
+     */
     @Override
     public Integer insertDeviceData(DeviceDataEntity entity) {
         return manageMapper.insertDeviceData(entity);
     }
-
+    /**
+     * 设备条件查询
+     * @param pageQuery
+     * @return
+     */
     @Override
     public PageResult<DeviceDataEntity> searchByConditions(PageQuery<DeviceDataParam> pageQuery) {
         DeviceDataParam param = pageQuery.getQueryParam();
@@ -32,12 +41,20 @@ public class DeviceManageServiceImpl implements DeviceManageService {
         Integer total = manageMapper.searchByConditionsCount(pageQuery);
         return PageResult.handleSearchData(data,total, pageQuery.getPageNum(), pageQuery.getValidPageSize());
     }
-
+    /**
+     * 根据id删除设备
+     * @param id
+     * @return
+     */
     @Override
     public Integer deleteDeviceData(Long id) {
         return manageMapper.deleteDeviceData(id);
     }
-
+    /**
+     * 更新设备数据
+     * @param param
+     * @return
+     */
     @Override
     public Integer updateDeviceData(DeviceDataParam param) {
         return manageMapper.updateDeviceData(param);

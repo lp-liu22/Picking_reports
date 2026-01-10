@@ -16,5 +16,10 @@ public interface DeviceManageMapper {
     Integer searchByConditionsCount(PageQuery<DeviceDataParam> pageQuery);
     //根据id删除设备
     Integer deleteDeviceData(Long id);
+    /**
+     * 更新设备数据
+     * @param param
+     * @return
+     */
     Integer updateDeviceData( DeviceDataParam param);
 }

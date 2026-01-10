@@ -16,6 +16,10 @@ import java.util.stream.Collectors;
 public class DeptServiceImpl implements DeptService {
     @Autowired
     private DeptMapper deptMapper;
+    /**
+     * 查询所有部门树
+     * @return
+     */
     @Override
     public List<JSONObject> getAllDeptTree() {
         List<JSONObject> result = new ArrayList<>();

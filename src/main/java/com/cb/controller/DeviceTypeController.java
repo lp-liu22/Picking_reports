@@ -22,6 +22,11 @@ import java.util.List;
 public class DeviceTypeController {
     @Autowired
     private DeviceTypeService deviceTypeService;
+    /**
+     * 设备类型新增
+     * @param deviceTypeEntity
+     * @return
+     */
     @Operation(summary = "类型新增")
     @PostMapping("/add")
     @SysOperationLog(module="设备类型管理",operationType = "设备类型新增",description = "新增设备分类")
@@ -32,18 +37,31 @@ public class DeviceTypeController {
         }
         return ResultData.success();
     }
+    /**
+     * 设备类型条件查询
+     * @param deviceTypeParamPageQuery
+     * @return
+     */
     @Operation(summary = "类型条件查询")
     @PostMapping("/searchByCondition")
     @SysOperationLog(module="设备类型管理",operationType = "设备类型查询",description = "设备类型查询")
     public ResultData<PageResult<DeviceQueryParam>> searchByCondition(@RequestBody PageQuery<DeviceTypeParam> deviceTypeParamPageQuery){
         return  ResultData.success(deviceTypeService.searchTypeByCondition(deviceTypeParamPageQuery));
     }
+    /**
+     * 查询所有一级分类
+     * @return
+     */
     @Operation(summary = "查询所有一级分类")
     @SysOperationLog(module="设备类型管理",operationType = "查询设备一级分类",description = "查询所有可用一级分类")
     @GetMapping("/getAllParentType")
     public ResultData<List<JSONObject>> getAllParentType(){
         return ResultData.success(deviceTypeService.getAllParentType());
     }
+    /**
+     * 查询所有分类
+     * @return
+     */
     @Operation(summary = "查询所有分类")
     @SysOperationLog(module="设备类型管理",operationType = "查询设备所有分类",description = "查询所有可用分类")
     @GetMapping("/getAllType")
@@ -62,6 +80,11 @@ public class DeviceTypeController {
             return  ResultData.failed();
         }
     }
+    /**
+     * 设备类型修改
+     * @param param
+     * @return
+     */
     @Operation(summary = "修改设备分类")
     @SysOperationLog(module="设备类型管理",operationType = "修改设备分类",description = "修改设备分类")
     @PostMapping("/updateDeviceType")
